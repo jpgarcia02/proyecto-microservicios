@@ -6,22 +6,22 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor() {
     super({
-      // 1️⃣ De dónde extraer el token
+      // 1️⃣ Extraer token del header Authorization: Bearer <token>
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-
+      
       // 2️⃣ No ignorar la expiración del token
       ignoreExpiration: false,
-
+      
       // 3️⃣ Clave secreta EXACTAMENTE igual al API Gateway
-      secretOrKey: process.env.JWT_SECRET || 'ju@ng@rcia02',
+      secretOrKey: 'ju@ng@rcia02',
     });
   }
 
-  // 4️⃣ Este método se ejecuta si el token es válido
-  //    Lo que retornes estará en req.user
+  // 4️⃣ Este método se ejecuta cuando el token es válido
+  //    Lo que retornes aquí estará disponible en req.user
   async validate(payload: any) {
     return { 
-      sub: payload.sub,      // userId (consistente con ms-items)
+      sub: payload.sub,        // userId
       email: payload.email 
     };
   }

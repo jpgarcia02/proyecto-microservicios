@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ItemsModule } from './items/items.module';
+import { AuthModule } from './auth/auth.module';  // ← AGREGAR
 import { Item } from './items/entities/item.entity';
 
 @Module({
@@ -20,6 +21,7 @@ import { Item } from './items/entities/item.entity';
     }),
 
     ItemsModule,
+    AuthModule,  // ← AGREGAR AQUÍ
   ],
 })
 export class AppModule {}

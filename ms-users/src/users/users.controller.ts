@@ -4,8 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 
-
-
+@UseGuards(AuthGuard('jwt'))  // ← JWT Guard aplicado a todo el controlador
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
