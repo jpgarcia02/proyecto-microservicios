@@ -8,8 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.7" />
-    <PackageReference Include="Ocelot" Version="24.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Ocelot" Version="22.0.0" />
+  </ItemGroup>
+
+  <!-- 🔹 Copiar ocelot.json a la carpeta bin para que Ocelot lo lea -->
+  <ItemGroup>
+    <None Update="ocelot.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

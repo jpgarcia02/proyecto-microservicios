@@ -14,7 +14,7 @@ import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { AuthGuard } from '@nestjs/passport';
 
-@UseGuards(AuthGuard('jwt'))
+
 @Controller('items')
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
