@@ -3,67 +3,45 @@
     {
       "DownstreamPathTemplate": "/auth/register",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4010 }],
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4010 }
+      ],
       "UpstreamPathTemplate": "/auth/register",
-      "UpstreamHttpMethod": ["POST"],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": null,
-        "AllowAnonymous": true
-      }
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/auth/login",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4010 }],
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4010 }
+      ],
       "UpstreamPathTemplate": "/auth/login",
-      "UpstreamHttpMethod": ["POST"],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": null,
-        "AllowAnonymous": true
-      }
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/users",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4010 }],
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4010 }
+      ],
       "UpstreamPathTemplate": "/users",
-      "UpstreamHttpMethod": ["GET", "POST"],
+      "UpstreamHttpMethod": [ "GET" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
-        "AllowAnonymous": false
-      }
-    },
-    {
-      "DownstreamPathTemplate": "/users/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4010 }],
-      "UpstreamPathTemplate": "/users/{id}",
-      "UpstreamHttpMethod": ["GET", "PATCH", "DELETE"],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowAnonymous": false
+        "AllowedScopes": []
       }
     },
     {
       "DownstreamPathTemplate": "/items",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4020 }],
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4020 }
+      ],
       "UpstreamPathTemplate": "/items",
-      "UpstreamHttpMethod": ["GET", "POST"],
+      "UpstreamHttpMethod": [ "GET", "POST" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
-        "AllowAnonymous": false
-      }
-    },
-    {
-      "DownstreamPathTemplate": "/items/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4020 }],
-      "UpstreamPathTemplate": "/items/{id}",
-      "UpstreamHttpMethod": ["GET", "PATCH", "DELETE"],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowAnonymous": false
+        "AllowedScopes": []
       }
     }
   ],

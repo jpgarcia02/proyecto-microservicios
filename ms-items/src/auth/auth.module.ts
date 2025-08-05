@@ -7,7 +7,7 @@ import { JwtStrategy } from './jwt.strategy';
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: 'ju@ng@rcia02',  // Misma clave que API Gateway
+      secret: 'juangarcia02',  // Misma clave que API Gateway
       signOptions: { expiresIn: '24h' },
     }),
   ],

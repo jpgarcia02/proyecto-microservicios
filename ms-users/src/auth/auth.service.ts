@@ -32,19 +32,24 @@ export class AuthService {
     return userWithoutPassword;
   }
 
-  // 3️⃣ Generar token y devolver usuario logueado
-  async login(loginDto: LoginDto) {
-    const user = await this.validateUser(loginDto);
-    if (!user) {
-      throw new UnauthorizedException('Credenciales inválidas');
-    }
-
-    const payload = { sub: user.id, email: user.email };
-    const token = await this.jwtService.signAsync(payload);
-
-    return {
-      access_token: token,
-      user: { id: user.id, email: user.email },
-    };
+ async login(loginDto: LoginDto) {
+  const user = await this.validateUser(loginDto);
+  if (!user) {
+    throw new UnauthorizedException('Credenciales inválidas');
   }
+
+  const payload = { sub: user.id, email: user.email };
+
+  // 🔹 Firma explícita compatible con Ocelot
+  const token = await this.jwtService.signAsync(payload, {
+    secret: 'juangarcia02',  // Exactamente igual a Ocelot
+    algorithm: 'HS256',
+  });
+
+  return {
+    access_token: token,
+    user: { id: user.id, email: user.email },
+  };
+}
+
 }

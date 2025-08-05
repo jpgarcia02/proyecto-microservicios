@@ -5,8 +5,14 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // ⚠️ IMPORTANTE: Habilitar CORS para que el API Gateway pueda acceder
+  app.enableCors();
+
   // Validaciones globales para DTOs
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
+  app.useGlobalPipes(new ValidationPipe({ 
+    whitelist: true, 
+    forbidNonWhitelisted: true 
+  }));
 
   const PORT = process.env.PORT || 4020;
   await app.listen(PORT);

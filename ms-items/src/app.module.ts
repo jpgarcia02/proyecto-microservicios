@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ItemsModule } from './items/items.module';
-import { AuthModule } from './auth/auth.module';  // ← AGREGAR
+import { AuthModule } from './auth/auth.module';  // ← IMPORTAR AuthModule
 import { Item } from './items/entities/item.entity';
 
 @Module({
@@ -21,7 +21,7 @@ import { Item } from './items/entities/item.entity';
     }),
 
     ItemsModule,
-    AuthModule,  // ← AGREGAR AQUÍ
+    AuthModule,  // ← AGREGAR AuthModule AQUÍ
   ],
 })
 export class AppModule {}
