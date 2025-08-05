@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       ignoreExpiration: false,
       
       // 3️⃣ Clave secreta EXACTAMENTE igual al API Gateway
-      secretOrKey: 'ju@ng@rcia02',
+      secretOrKey: 'SuperUltraS3cUr3-4p1-g4t3w4y-K3y!123', // ⚠️ CORREGIDO: era 'ju@ng@rcia02'
     });
   }
 

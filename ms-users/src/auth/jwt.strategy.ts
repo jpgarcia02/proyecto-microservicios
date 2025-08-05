@@ -1,28 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
-  constructor() {
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(private readonly configService: ConfigService) {
     super({
-      // 1️⃣ De dónde extraer el token
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-
-      // 2️⃣ No ignorar la expiración del token
+      secretOrKey: configService.get<string>(
+        'JWT_SECRET',
+        'SuperUltraS3cUr3-4p1-g4t3w4y-K3y!123',
+      ),
       ignoreExpiration: false,
-
-      // 3️⃣ Clave secreta EXACTAMENTE igual al API Gateway
-      secretOrKey: process.env.JWT_SECRET || 'ju@ng@rcia02',
+      algorithms: ['HS256'],
+      issuer: 'ms-users', // si lo usas también en el sign
     });
   }
 
-  // 4️⃣ Este método se ejecuta si el token es válido
-  //    Lo que retornes estará en req.user
   async validate(payload: any) {
-    return { 
-      sub: payload.sub,      // userId (consistente con ms-items)
-      email: payload.email 
-    };
+    return { id: payload.sub, email: payload.email };
   }
 }

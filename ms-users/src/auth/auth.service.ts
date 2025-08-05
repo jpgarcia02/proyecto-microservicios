@@ -12,44 +12,43 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  // 1️⃣ Registrar nuevo usuario
   async register(registerDto: RegisterDto) {
-    // Delegamos la creación al UsersService (que ya hace hash)
     const user = await this.usersService.create(registerDto);
-    return user; // Retornamos sin password
+    return user;
   }
 
-  // 2️⃣ Validar credenciales para login
   async validateUser(loginDto: LoginDto) {
     const user = await this.usersService.findByEmail(loginDto.email);
-
+    if (!user) return null;
     const isMatch = await bcrypt.compare(loginDto.password, user.password);
-    if (!isMatch) {
-      return null;
-    }
-
-    const { password: _, ...userWithoutPassword } = user;
+    if (!isMatch) return null;
+    const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
 
- async login(loginDto: LoginDto) {
-  const user = await this.validateUser(loginDto);
-  if (!user) {
-    throw new UnauthorizedException('Credenciales inválidas');
+  async login(loginDto: LoginDto) {
+    const user = await this.validateUser(loginDto);
+    if (!user) throw new UnauthorizedException('Credenciales inválidas');
+
+    const payload = {
+      sub: user.id,
+      email: user.email,
+    };
+
+    // SOLO 'kid' y 'typ' en header, el algoritmo se define en options
+    const access_token = this.jwtService.sign(payload, {
+      algorithm: 'HS256',
+      expiresIn: '24h',
+      
+    });
+
+    return {
+      access_token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    };
   }
-
-  const payload = { sub: user.id, email: user.email };
-
-  // 🔹 Firma explícita compatible con Ocelot
-  const token = await this.jwtService.signAsync(payload, {
-    secret: 'juangarcia02',  // Exactamente igual a Ocelot
-    algorithm: 'HS256',
-  });
-
-  return {
-    access_token: token,
-    user: { id: user.id, email: user.email },
-  };
-}
-
 }

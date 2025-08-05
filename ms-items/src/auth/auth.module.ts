@@ -5,10 +5,10 @@ import { JwtStrategy } from './jwt.strategy';
 
 @Module({
   imports: [
-    PassportModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: 'juangarcia02',  // Misma clave que API Gateway
-      signOptions: { expiresIn: '24h' },
+      secret: process.env.JWT_SECRET || 'SuperUltraS3cUr3-4p1-g4t3w4y-K3y!123',
+      signOptions: { algorithm: 'HS256', issuer: 'ms-users' },
     }),
   ],
   providers: [JwtStrategy],

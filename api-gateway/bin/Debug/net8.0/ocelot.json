@@ -3,34 +3,29 @@
     {
       "DownstreamPathTemplate": "/auth/register",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4010 }],
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4010 }
+      ],
       "UpstreamPathTemplate": "/auth/register",
-      "UpstreamHttpMethod": ["POST"]
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/auth/login",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4010 }],
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4010 }
+      ],
       "UpstreamPathTemplate": "/auth/login",
-      "UpstreamHttpMethod": ["POST"]
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/users",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4010 }],
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4010 }
+      ],
       "UpstreamPathTemplate": "/users",
-      "UpstreamHttpMethod": ["GET", "POST"],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
-    },
-    {
-      "DownstreamPathTemplate": "/users/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4010 }],
-      "UpstreamPathTemplate": "/users/{id}",
-      "UpstreamHttpMethod": ["GET", "PATCH", "DELETE"],
+      "UpstreamHttpMethod": [ "GET" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
@@ -39,20 +34,11 @@
     {
       "DownstreamPathTemplate": "/items",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4020 }],
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4020 }
+      ],
       "UpstreamPathTemplate": "/items",
-      "UpstreamHttpMethod": ["GET", "POST"],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
-    },
-    {
-      "DownstreamPathTemplate": "/items/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [{ "Host": "localhost", "Port": 4020 }],
-      "UpstreamPathTemplate": "/items/{id}",
-      "UpstreamHttpMethod": ["GET", "PATCH", "DELETE"],
+      "UpstreamHttpMethod": [ "GET", "POST" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
