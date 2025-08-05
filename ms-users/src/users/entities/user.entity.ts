@@ -17,4 +17,7 @@ export class User {
   // Password en texto hash (bcrypt)
   @Column()
   password: string;
+
+  @Column({default: 'user'})
+  role: string;
 }

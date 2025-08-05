@@ -4,7 +4,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 
-@UseGuards(AuthGuard('jwt'))  // ← JWT Guard aplicado a todo el controlador
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/auth/roles.decorator';
+
+@UseGuards(AuthGuard('jwt'),RolesGuard)  // ← JWT Guard aplicado a todo el controlador
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -14,6 +17,7 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Roles('admin')
   @Get()
   findAll() {
     return this.usersService.findAll();

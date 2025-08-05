@@ -4,7 +4,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(private readonly configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -14,11 +14,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       ),
       ignoreExpiration: false,
       algorithms: ['HS256'],
-      issuer: 'ms-users', // si lo usas también en el sign
     });
   }
 
   async validate(payload: any) {
-    return { id: payload.sub, email: payload.email };
+    // 🔹 Incluimos el role en req.user
+    return { 
+      id: payload.sub, 
+      email: payload.email,
+      role: payload.role,
+    };
   }
 }
