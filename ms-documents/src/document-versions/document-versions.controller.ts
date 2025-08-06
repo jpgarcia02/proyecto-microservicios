@@ -39,7 +39,7 @@ export class DocumentVersionsController {
   @Post('upload/:documentId')
   @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
-      destination: './files', // Carpeta donde se guardan los archivos
+      destination: './uploads', // Carpeta donde se guardan los archivos
       filename: (req, file, callback) => {
         // Generamos un nombre único: id + timestamp + extensión
         const uniqueName = `${req.params.documentId}-${Date.now()}${extname(file.originalname)}`;
