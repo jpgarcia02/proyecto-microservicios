@@ -43,6 +43,15 @@
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
+    },
+    {
+      "DownstreamPathTemplate": "/documents",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4030 }
+      ],
+      "UpstreamPathTemplate": "/documents",
+      "UpstreamHttpMethod": [ "GET", "POST", "PATCH", "DELETE" ]
     }
   ],
   "GlobalConfiguration": {

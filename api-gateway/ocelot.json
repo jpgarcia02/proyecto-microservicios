@@ -1,5 +1,6 @@
 {
   "Routes": [
+   
     {
       "DownstreamPathTemplate": "/auth/register",
       "DownstreamScheme": "http",
@@ -31,6 +32,8 @@
         "AllowedScopes": []
       }
     },
+
+    
     {
       "DownstreamPathTemplate": "/items",
       "DownstreamScheme": "http",
@@ -43,8 +46,78 @@
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       }
-    }
+    },
+
+    
+    {
+      "DownstreamPathTemplate": "/documents",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4030 }
+      ],
+      "UpstreamPathTemplate": "/documents",
+      "UpstreamHttpMethod": [ "GET", "POST", "PATCH", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/documents/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4030 }
+      ],
+      "UpstreamPathTemplate": "/documents/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PATCH", "DELETE" ]
+    },
+
+    
+    {
+      "DownstreamPathTemplate": "/categories",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4030 }
+      ],
+      "UpstreamPathTemplate": "/categories",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/categories/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4030 }
+      ],
+      "UpstreamPathTemplate": "/categories/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PATCH", "DELETE" ]
+    },
+
+    
+    {
+      "DownstreamPathTemplate": "/document-versions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4030 }
+      ],
+      "UpstreamPathTemplate": "/document-versions",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/document-versions/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 4030 }
+      ],
+      "UpstreamPathTemplate": "/document-versions/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PATCH", "DELETE" ]
+    },
+    {
+  "DownstreamPathTemplate": "/document-versions/upload/{documentId}",
+  "DownstreamScheme": "http",
+  "DownstreamHostAndPorts": [
+    { "Host": "localhost", "Port": 4030 }
   ],
+  "UpstreamPathTemplate": "/document-versions/upload/{documentId}",
+  "UpstreamHttpMethod": [ "POST" ]
+}
+  ],
+
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5243"
   }
